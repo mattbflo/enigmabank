@@ -67,14 +67,17 @@
 			
 			  <div class="row">
 				<div class="large-6 columns">
-				  <label>Account Number</label>
+				  <label>Account Number<br />
+				  <em>Please enter the nine (9) digit Account Number.</em></label>
 				  <input type="text" name="accountNumber" id="accountNumber" />
 				</div>
 			  </div>
 				
 			  <div class="row">
 				<div class="large-6 columns">
-				  <label>Password</label>
+				  <label>Password<br />
+				  <em>Please enter the four (4) letter Password.</em>
+				  </label>
 				  <input type="password" name="accountPassword" id="accountPassword" />
 				</div>
 			  </div>
@@ -123,7 +126,7 @@
 				<p>&nbsp;</p>
 				<p><strong>Success! Funds have been transferred...</strong></p>
 				
-				<p><span class="success button confirmationNumber">TRANSFER CONFIRMATION # 070-236-180-455-928-777</span></p>
+				<p><span class="success button confirmationNumber">TRANSFER CONFIRMATION # 070-236-180-455-928-777</span>&nbsp;<img src="images/man.jpg" width="50"></p>
 				
 			</div>
 		</div>
@@ -146,7 +149,7 @@
       $("#transferSubmit").click(function (e) {
 		e.preventDefault();
 		
-		var correctNumber = "693524954"; //
+		var correctNumber = "120436294"; //
 		var accountNumber = $('#accountNumber').val();
 		var accountPassword = $('#accountPassword').val().toLowerCase();
 		
@@ -183,6 +186,16 @@
 	    $('#accountForm').bind('keypress keydown keyup', function(e){
 		   if(e.keyCode == 13) { e.preventDefault(); }
 		});
+	
+	  document.oncontextmenu=RightMouseDown;
+	  document.onmousedown = mouseDown; 
+
+	  function mouseDown(e) {
+		  if (e.which==3) {//righClick
+		  alert("Disabled - do whatever you like here..");
+	   }
+	}
+	function RightMouseDown() { return false;}
 	
 	</script>
   </body>
