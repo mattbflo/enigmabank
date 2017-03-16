@@ -1,0 +1,189 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enigma Bank</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+	<style>
+		#successSection, #emailSection, #warningAlert{
+			display: none;
+		}
+		.error {
+			font-weight: bold;
+			color: red;
+		}
+		.button {
+			font-weight: bold;
+			color: black;
+			font-size: 20px;
+		}
+		.confirmationNumber{
+			font-size:24px;
+			color:black;
+		}
+		#warningAlert {
+			padding: 20px;
+			background-color: yellow;
+			border: 6px dashed red;
+			border-radius: 12px;
+		}
+		#warningAlert p {
+			color: red;
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+		}
+		
+		.flash {
+		   animation-name: flash;
+			animation-duration: 1s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			animation-play-state: running;
+		}
+
+		@keyframes flash {
+			from {color: red;}
+			to {color: yellow;}
+		}
+		
+	</style>
+  </head>
+  <body>
+<div class="row">
+	<div class="large-2 columns">&nbsp;</div>
+	<div class="large-8 columns">
+	<!-- BODY START -->
+		<div class="row"><img src="images/logo.jpg"></div>
+	
+		<div class="row" id="transferSection">
+		  <div class="large-12 columns">
+			<h5>Account Login</h5>
+			<form id="accountForm">
+			
+			  <div class="row">
+				<div class="large-6 columns">
+				  <label>Account Number</label>
+				  <input type="text" name="accountNumber" id="accountNumber" />
+				</div>
+			  </div>
+				
+			  <div class="row">
+				<div class="large-6 columns">
+				  <label>Password</label>
+				  <input type="password" name="accountPassword" id="accountPassword" />
+				</div>
+			  </div>
+			  
+			  
+			  <div class="row">
+				<div class="large-12 columns">
+				  <a href="#" class="button" id="transferSubmit">Enter &gt;</a>
+				</div>
+			  </div>
+			  
+			  </form>
+		  </div>
+		</div>
+	
+		<div class="row" id="emailSection"> 
+		  <div class="large-12 columns">
+			<h5>Account Balance: $872,000,000</h5>
+			
+			<form id="accountForm">
+			
+			  <!-- <div class="row">
+				<div class="large-12 columns">
+				  <label>Email Address</label>
+				  <input type="text" name="emailAddress" id="emailAddress" />
+				</div>
+			  </div> -->
+			  
+			  <div class="row">
+				<div class="large-12 columns">
+				  <a href="#" class="button" id="emailSubmit">Transfer Funds &gt;</a>
+				</div>
+			  </div>
+			  
+			</form>
+			
+		  </div>
+		</div>
+		
+		<div class="row" id="successSection"> 
+			<div class="large-12 columns">
+				<div id="warningAlert">
+					<p class="flash">WARNING: Unauthorized Transaction. Federal Agents have been notified. Use an alternate exit.</p>
+
+				</div>
+				<p>&nbsp;</p>
+				<p><strong>Success! Funds have been transferred...</strong></p>
+				
+				<p><span class="success button confirmationNumber">TRANSFER CONFIRMATION # 070-236-180-455-928-777</span></p>
+				
+			</div>
+		</div>
+	
+	<div id="accountFailed"></div>
+	<!--<div class="error" id="warning"></div> -->
+
+	<!-- BODY END -->
+    </div>
+	<div class="large-2 columns">&nbsp;</div>
+</div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+	
+	<script>
+	
+      $("#transferSubmit").click(function (e) {
+		e.preventDefault();
+		
+		var correctNumber = "693524954"; //
+		var accountNumber = $('#accountNumber').val();
+		var accountPassword = $('#accountPassword').val().toLowerCase();
+		
+		if (accountNumber == correctNumber && accountPassword == "time") {
+             $("#transferSection").hide();
+             $("#emailSection").show();
+		} else {
+			errorText = "INCORRECT ACCOUNT NUMBER and/or PASSWORD";
+			alert(errorText);
+		}
+		
+	  });
+	  
+      $("#emailSubmit").click(function (e) {
+		e.preventDefault();
+			
+		var email = $('#emailAddress').val();
+		
+		//if (email == "") {
+		//	errorText = "Please enter an email address.";
+		//	alert(errorText);
+		//} else {
+			$("#emailSection").hide();
+			$("#successSection").show();
+			$('#sentEmail').html(email);
+			
+			setTimeout(function() { $("#warningAlert").show(); }, 2500);
+			//setTimeout(function() { alert("WARNING: Unauthorized Transaction. Federal Agents have been notified. Use an alternate exit."); }, 2000);
+
+		//}
+		
+	  });
+	
+	    $('#accountForm').bind('keypress keydown keyup', function(e){
+		   if(e.keyCode == 13) { e.preventDefault(); }
+		});
+	
+	</script>
+  </body>
+</html>
